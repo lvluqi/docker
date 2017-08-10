@@ -1,0 +1,16 @@
+2017-07-19 23:11:03,334 CRIT Supervisor running as root (no user in config file)
+2017-07-19 23:11:03,350 INFO supervisord started with pid 29967
+2017-07-19 23:11:03,351 INFO spawned: 'nginx' with pid 29968
+2017-07-19 23:11:03,463 INFO exited: nginx (exit status 0; not expected)
+2017-07-19 23:11:03,463 INFO received SIGCLD indicating a child quit
+2017-07-19 23:11:04,467 INFO spawned: 'nginx' with pid 29989
+2017-07-19 23:11:04,519 INFO exited: nginx (exit status 0; not expected)
+2017-07-19 23:11:04,519 INFO received SIGCLD indicating a child quit
+2017-07-19 23:11:06,528 INFO spawned: 'nginx' with pid 30002
+2017-07-19 23:11:06,577 INFO exited: nginx (exit status 0; not expected)
+2017-07-19 23:11:06,577 INFO received SIGCLD indicating a child quit
+2017-07-19 23:11:09,586 INFO spawned: 'nginx' with pid 30015
+2017-07-19 23:11:09,635 INFO exited: nginx (exit status 0; not expected)
+2017-07-19 23:11:09,636 INFO received SIGCLD indicating a child quit
+2017-07-19 23:11:10,639 INFO gave up: nginx entered FATAL state, too many start retries too quickly
+2017-07-19 23:11:57,458 CRIT received SIGINT indicating exit request

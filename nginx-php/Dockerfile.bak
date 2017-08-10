@@ -1,0 +1,42 @@
+
+FROM centos:v2
+
+#Nginx
+RUN yum -y install nginx
+COPY default.conf /etc/nginx/conf.d/default.conf
+COPY php.conf /etc/nginx/default.d/php.conf
+COPY index.php /usr/share/nginx/html/index.php
+RUN mkdir /etc/nginx/sites-available
+
+#PHP55
+RUN yum -y install php php-zts php-fpm php-xml php-pdo php-mbstring php-gd php-pecl-imagick php-pecl-mongo php-pecl-redis php-bcmath php-mcrypt php-soap php-devel php-mysqlnd php-amqp php-pecl-yaf php-pear
+
+#Install PHP-plu Mongodb
+#RUN /usr/bin/pecl channel-update pecl.php.net
+#RUN /usr/bin/pecl install mongodb
+
+#Backup php-fpm Configure
+RUN cp /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.conf.backup
+
+#PHP and PHP-mongodb configure
+COPY www.conf /etc/php-fpm.d/www.conf
+#COPY mongodb.ini /etc/php.d/mongodb.ini
+
+#Php Timezone
+RUN echo "date.timezone = Asia/Shanghai" >>/etc/php.ini
+
+#Install ffmpeg
+RUN rpm -ivh http://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-release-6-1.noarch.rpm
+RUN yum -y install ffmpeg xorg-x11-fonts-75dpi xorg-x11-fonts-Type1 wqy-zenhei-fonts
+
+#wxhtmlpdf
+RUN rpm -ivh https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.2.1/wkhtmltox-0.12.2.1_linux-cento
+s6-amd64.rpm
+
+#EXPOSE
+EXPOSE 80
+
+#Start Nginx and Php-fpm
+RUN yum -y install supervisor
+COPY supervisord.conf /etc/supervisord.conf
+CMD ["/usr/bin/supervisord"]
