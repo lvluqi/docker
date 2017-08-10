@@ -23,7 +23,7 @@ RUN rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql /var/run/mysqld \
 #Modify Mysql configure file
 COPY my.cnf /etc/my.cnf
 
-RUN /var/lib/mysql
+VOLUME /var/lib/mysql
 
 #Start Supervisor
 COPY docker-entrypoint.sh /usr/local/bin/
