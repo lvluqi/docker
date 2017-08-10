@@ -1,4 +1,4 @@
-FROM centos:7.3
+FROM centos
 #ENV mysql_root_password=DevStageRedis2C3pQ5rpldkl98
 #ENV mysqldb_name=3mjingsocial
 #ENV mysqldb_user=3mjingsocial
