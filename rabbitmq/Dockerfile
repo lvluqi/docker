@@ -1,6 +1,6 @@
 
 #rabbitmq
-FROM elasticsearch
+FROM elasticsearch:latest
 
 RUN yum -y install erlang logrotate
 RUN rpm --import https://www.rabbitmq.com/rabbitmq-signing-key-public.asc
