@@ -17,7 +17,7 @@ RUN mkdir /docker-entrypoint-initdb.d
 COPY Live-Mysql-Db-Init.sql /docker-entrypoint-initdb.d/
 
 RUN rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql /var/run/mysqld \
-      && chown -R mysql:mysql /var/lib/mysql /var/lib/run/mysqld \
+      && chown -R mysql:mysql /var/lib/mysql /var/run/mysqld \
       && chmod 777 /var/run/mysqld
 
 #Modify Mysql configure file
