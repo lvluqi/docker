@@ -2,7 +2,7 @@
 # NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
 # PLEASE UPDATE Dockerfile.txt INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM registry.cn-hangzhou.aliyuncs.com/dstack/redis:latest
+FROM registry.cn-hangzhou.aliyuncs.com/dstack/base:latest
 LABEL authors=SeleniumHQ
 
 USER seluser
