@@ -2,7 +2,7 @@
 # NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
 # PLEASE UPDATE Dockerfile.txt INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM selenium/base:3.4.0-francium
+FROM registry.cn-hangzhou.aliyuncs.com/dstack/redis:latest
 LABEL authors=SeleniumHQ
 
 USER seluser
