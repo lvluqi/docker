@@ -10,7 +10,7 @@ RUN yum -y install erlang logrotate && \
             ln -s /usr/bin/rabbitmq/bin/rabbitmq-env /usr/sbin/rabbitmq-env && \
             service rabbitmq-server  start && \
             rabbitmq-plugins enable rabbitmq_delayed_message_exchange && rabbitmq-plugins enable rabbitmq_management && \
-            rabbitmqctl delete_user guest && \ rabbitmqctl add_user lvluqi lvluqi && service rabbitmq-server stop
+            rabbitmqctl add_user lvluqi lvluqi && rabbitmqctl set_user_tags lvluqi monitoring && service rabbitmq-server stop
 
 #rabbitmq-env.conf
 COPY rabbitmq-env.conf /etc/rabbitmq/rabbitmq-env.conf
