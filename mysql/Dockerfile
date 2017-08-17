@@ -1,8 +1,8 @@
 FROM registry.cn-hangzhou.aliyuncs.com/dstack/elasticsearch:latest
 ENV MYSQL_ROOT_PASSWORD=redhat
-#ENV mysqldb_name=3mjingsocial
-#ENV mysqldb_user=3mjingsocial
-#ENV mysqldb_password=3mH4eva5pedE2shes
+ENV MYSQL_DATABASE=3mjingsocial
+ENV MYSQL_USER=3mjingsocial
+ENV MYSQL_PASSWORD=3mH4eva5pedE2shes
 
 RUN groupadd -r mysql && useradd -r -g mysql mysql
 
