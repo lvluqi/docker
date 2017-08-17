@@ -234,3 +234,4 @@ if [ "$originalArgOne" = 'mongod' ]; then
 
 	unset "${!MONGO_INITDB_@}"
 fi
+exec "$@" -f /etc/mongod.conf
