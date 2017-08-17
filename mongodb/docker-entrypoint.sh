@@ -223,7 +223,7 @@ if [ "$originalArgOne" = 'mongod' ]; then
 			echo
 		done
 
-		"$@" --pidfilepath="$pidfile" --shutdown
+		"$@" -f /etc/mongod.conf --pidfilepath="$pidfile" --shutdown
 		rm "$pidfile"
 		trap - EXIT
 
