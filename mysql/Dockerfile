@@ -1,5 +1,5 @@
-FROM centos
-#ENV mysql_root_password=DevStageRedis2C3pQ5rpldkl98
+FROM registry.cn-hangzhou.aliyuncs.com/dstack/elasticsearch:latest
+ENV MYSQL_ROOT_PASSWORD=redhat
 #ENV mysqldb_name=3mjingsocial
 #ENV mysqldb_user=3mjingsocial
 #ENV mysqldb_password=3mH4eva5pedE2shes
