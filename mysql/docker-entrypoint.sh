@@ -60,7 +60,7 @@ EOSQL
         fi
 
         if [ "$MYSQL_DATABASE" ]; then
-            echo "CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\` ;" | "${mysql[@]}"
+            echo "CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\` DEFAULT CHARSET utf8mb4 ;" | "${mysql[@]}"
             mysql+=( "$MYSQL_DATABASE" )
         fi
 
@@ -78,7 +78,7 @@ EOSQL
         for f in /docker-entrypoint-initdb.d/*; do
             case "$f" in
                 *.sh)  echo "$0: running $f"; . "$f" ;;
-                *.sql) echo "$0: running $f"; "${mysql[@]}" $MYSQL_DATABASE < "$f" && echo ;;
+                *.sql) echo "$0: running $f"; "${mysql[@]}" < "$f" && echo ;;
                 *)     echo "$0: ignoring $f" ;;
             esac
             echo
@@ -97,4 +97,4 @@ EOSQL
     chown -R mysql:mysql "$DATADIR"
 fi
 
-exec "$@"
+exec /etc/init.d/mysqld start
