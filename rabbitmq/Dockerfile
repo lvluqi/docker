@@ -8,9 +8,10 @@ RUN yum -y install erlang logrotate && \
             yum -y install wget && wget https://www.rabbitmq.com/community-plugins/v3.5.x/rabbitmq_delayed_message_exchange-0.0.1-rmq3.5.x-9bf265e4.ez \
             -P /usr/lib/rabbitmq/lib/rabbitmq_server-3.5.7/plugins/ && \
             ln -s /usr/bin/rabbitmq/bin/rabbitmq-env /usr/sbin/rabbitmq-env && \
-            service rabbitmq-server  start && \
+            #service rabbitmq-server  start && \
             rabbitmq-plugins enable rabbitmq_delayed_message_exchange && rabbitmq-plugins enable rabbitmq_management && \
-            service rabbitmq-server stop
+            rabbitmqctl add_user lvluqi lvluqi &&  rabbitmqctl set_user_tag lvluqi administrator
+            #service rabbitmq-server stop
 
 #rabbitmq-env.conf
 COPY rabbitmq-env.conf /etc/rabbitmq/rabbitmq-env.conf
