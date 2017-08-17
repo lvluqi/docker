@@ -30,7 +30,6 @@ VOLUME ["/var/lib/mongo"]
 #EXPOSE
 EXPOSE 27017
 
-RUN cp files/*
 COPY entrypoint.sh /etc/
 CMD /etc/entrypoint.sh
 #CMD ["/usr/bin/supervisord"]
