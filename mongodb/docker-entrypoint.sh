@@ -147,7 +147,7 @@ if [ "$originalArgOne" = 'mongod' ]; then
 		pidfile="$(mktemp)"
 		trap "rm -f '$pidfile'" EXIT
 
-		_mongod_hack_ensure_arg_val --bind_ip 127.0.0.1 "$@"
+		_mongod_hack_ensure_arg_val --bind_ip 127.0.0.1 "$@" -f /etc/mongod.conf
 		_mongod_hack_ensure_arg_val --port 27017 "${mongodHackedArgs[@]}"
 
 		sslMode="$(_mongod_hack_have_arg '--sslPEMKeyFile' "$@" && echo 'allowSSL' || echo 'disabled')" # "BadValue: need sslPEMKeyFile when SSL is enabled" vs "BadValue: need to enable SSL via the sslMode flag when using SSL configuration parameters"
