@@ -8,9 +8,9 @@ FROM registry.cn-hangzhou.aliyuncs.com/dstack/elasticsearch:latest
 #ENV mongodb_password 3m3B4Xq7eUgEjm76
 
 #Install Mongodb
-COPY mongodb-org-3.4.repo /etc/yum.repos.d/mongodb-org-3.4.repo
-RUN yum -y install mongodb-org
-RUN yum -y install pymongo
+COPY mongodb-org-3.2.repo /etc/yum.repos.d/mongodb-org-3.2.repo
+RUN yum -y install mongodb-org && yum -y install pymongo
+
 #RUN echo "mongodb hard nofile 64000" >> /etc/security/limits.conf
 #RUN echo "mongodb soft nofile 64000" >> /etc/security/limits.conf
 #RUN echo "mongodb hard hard nproc 33000" >> /etc/security/limits.conf
@@ -26,12 +26,6 @@ COPY mongod.conf /etc/mongod.conf
 COPY mongo_root_user_create.js /root/
 COPY mongo_db_collection_create.js /root/
 COPY mongo_user_create.js /root/
-#RUN mongo admin --shell /root/mongo_root_user_create.js && exit
-#RUN mongo 3mjingsocial --shell /root/mongo_user.create.js && exit
-#RUN mongo --shell /root/mongo_db_collection_create.js && exit
-#RUN rm -f /root/mongo_root_user_create.js
-#RUN rm -f /root/mongo_user_create.js
-#RUN rm -f /root/mongo_db_collection_create.js
 
 #vloume
 VOLUME ["/var/lib/mongo"]
@@ -40,7 +34,7 @@ VOLUME ["/var/lib/mongo"]
 EXPOSE 27017
 
 #Start Supervisor
-COPY supervisord.conf /etc/supervisord.conf
+#COPY supervisord.conf /etc/supervisord.conf
 COPY entrypoint.sh /etc/
 CMD /etc/entrypoint.sh
 #CMD ["/usr/bin/supervisord"]
