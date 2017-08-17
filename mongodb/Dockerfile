@@ -30,6 +30,7 @@ VOLUME ["/var/lib/mongo"]
 #EXPOSE
 EXPOSE 27017
 
-COPY entrypoint.sh /etc/
-CMD /etc/entrypoint.sh
+COPY docker-entrypoint.sh /usr/local/bin
+RUN ln -s /usr/local/bin/docker-entrypoint.sh /entrypoint.sh
+CMD /entrypoint.sh mongod
 #CMD ["/usr/bin/supervisord"]

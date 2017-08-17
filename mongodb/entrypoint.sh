@@ -11,15 +11,15 @@ originalArgOne="$1"
 # all mongo* commands should be dropped to the correct user
 if [[ "$originalArgOne" == mongo* ]] && [ "$(id -u)" = '0' ]; then
 	if [ "$originalArgOne" = 'mongod' ]; then
-		chown -R mongodb /data/configdb /data/db
+		chown -R mongod /var/lib/mongo
 	fi
 
 	# make sure we can write to stdout and stderr as "mongodb"
 	# (for our "initdb" code later; see "--logpath" below)
-	chown --dereference mongodb "/proc/$$/fd/1" "/proc/$$/fd/2" || :
+	chown --dereference mongod "/proc/$$/fd/1" "/proc/$$/fd/2" || :
 	# ignore errors thanks to https://github.com/docker-library/mongo/issues/149
 
-	exec mongodb "$BASH_SOURCE" "$@"
+	#exec mongodb "$BASH_SOURCE" "$@"
 fi
 
 # usage: file_env VAR [DEFAULT]
@@ -124,10 +124,10 @@ if [ "$originalArgOne" = 'mongod' ]; then
 	# check for a few known paths (to determine whether we've already initialized and should thus skip our initdb scripts)
 	if [ -n "$shouldPerformInitdb" ]; then
 		for path in \
-			/data/db/WiredTiger \
-			/data/db/journal \
-			/data/db/local.0 \
-			/data/db/storage.bson \
+			/var/lib/mongo/WiredTiger \
+			/var/lib/mongo/journal \
+			/var/lib/mongo/local.0 \
+			/var/lib/mongo/storage.bson \
 		; do
 			if [ -e "$path" ]; then
 				shouldPerformInitdb=
@@ -158,8 +158,8 @@ if [ "$originalArgOne" = 'mongod' ]; then
 			# https://github.com/docker-library/mongo/issues/164#issuecomment-293965668
 			_mongod_hack_ensure_arg_val --logpath "/proc/$$/fd/1" "${mongodHackedArgs[@]}"
 		else
-			echo >&2 "warning: initdb logs cannot write to '/proc/$$/fd/1', so they are in '/data/db/docker-initdb.log' instead"
-			_mongod_hack_ensure_arg_val --logpath /data/db/docker-initdb.log "${mongodHackedArgs[@]}"
+			echo >&2 "warning: initdb logs cannot write to '/proc/$$/fd/1', so they are in '/var/lig/mongo/docker-initdb.log' instead"
+			_mongod_hack_ensure_arg_val --logpath /var/lib/mongo/docker-initdb.log "${mongodHackedArgs[@]}"
 		fi
 		_mongod_hack_ensure_arg --logappend "${mongodHackedArgs[@]}"
 
