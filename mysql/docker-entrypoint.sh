@@ -97,4 +97,4 @@ EOSQL
     chown -R mysql:mysql "$DATADIR"
 fi
 
-exec /etc/init.d/mysqld start
+exec "$@"
