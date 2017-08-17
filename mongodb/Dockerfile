@@ -9,7 +9,7 @@ FROM registry.cn-hangzhou.aliyuncs.com/dstack/elasticsearch:latest
 
 #Install Mongodb
 COPY mongodb-org-3.2.repo /etc/yum.repos.d/mongodb-org-3.2.repo
-RUN yum -y install mongodb-org && yum -y install pymongo
+RUN yum -y install mongodb-org && yum -y install pymongo && mkdir /docker-entrypoint-initdb.d/
 
 #RUN echo "mongodb hard nofile 64000" >> /etc/security/limits.conf
 #RUN echo "mongodb soft nofile 64000" >> /etc/security/limits.conf
@@ -19,22 +19,13 @@ RUN yum -y install mongodb-org && yum -y install pymongo
 #mongodb configure file
 COPY mongod.conf /etc/mongod.conf
 
-#mongodb start
-#RUN /etc/init.d/mongod restart
-
-#ADD user
-COPY mongo_root_user_create.js /root/
-COPY mongo_db_collection_create.js /root/
-COPY mongo_user_create.js /root/
-
 #vloume
 VOLUME ["/var/lib/mongo"]
 
 #EXPOSE
 EXPOSE 27017
 
-#Start Supervisor
-#COPY supervisord.conf /etc/supervisord.conf
+RUN cp files/* /docker-entrypoint-initdb.d/
 COPY entrypoint.sh /etc/
 CMD /etc/entrypoint.sh
 #CMD ["/usr/bin/supervisord"]
