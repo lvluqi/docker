@@ -28,7 +28,7 @@ VOLUME /var/lib/mysql
 #Start Supervisor
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s /usr/local/bin/docker-entrypoint.sh /entrypoint.sh
-ENTRYPOINT /entrypoint.sh mysqld
+CMD /entrypoint.sh mysqld
 
 EXPOSE 3306
 #CMD ["mysqld"]
