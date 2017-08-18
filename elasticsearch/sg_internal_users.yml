@@ -1,0 +1,19 @@
+# This is the internal user database
+# The hash value is a bcrypt hash and can be generated with plugin/tools/hash.sh
+admin:
+  hash: $2a$12$3LpM/ihvuFXUcmylrqzKP.y3Hugus7ZvKjuPLiPdQ1sC3wpSlddpW
+kirk:
+  hash: $2a$12$3LpM/ihvuFXUcmylrqzKP.y3Hugus7ZvKjuPLiPdQ1sC3wpSlddpW
+  roles:
+    - captains
+    - starfleet
+dever:
+  hash: $2a$12$vXHoYs6cejv92biQCUArq.7KHQDFX5vSMFdc.zH.20cVDiOwW06Za
+live_jingsocial:
+  hash: $2a$12$faKYpm3lKP4Xx1gA1IJF1eOWBqAdfHE41xnfovzDXj4tpWoEbp94e
+staging_jingsocial:
+  hash: $2a$12$lT38mtmUfSDfCDKPEBZlZuiWokLhVIY1P7BDKG5PYf5ApgC6Q/1zq
+dev_jingsocial:
+  hash: $2a$12$8XViNnHdbk6mI5b.05U0fudGmjJ0WKjKR2u1JVOb4jqdgZxsSHA8S
+tester:
+  hash: $2a$12$5HyX5RdGTmwvcdgWwmHYi.I5GNDXlxhXtCJqMJ2O/O66YLVMjERse

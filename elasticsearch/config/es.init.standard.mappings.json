@@ -1,0 +1,2185 @@
+{
+    "settings": {
+        "number_of_shards": 32,
+        "number_of_replicas": 1
+    },
+    "mappings": {
+        "wechat_customer": {
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "id_string": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_end": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "unid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "headimgurl": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "telephone": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "subscribe": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "name": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "nickname": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "sex": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "language": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "city": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "province": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "country": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "subscribe_time": {
+                    "type": "date"
+                },
+                "unsubscribe_time": {
+                    "type": "date"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "group_id": {
+                    "type": "integer"
+                },
+                "tag_id": {
+                    "type": "integer"
+                },
+                "tag_count": {
+                    "type": "integer"
+                },
+                "group_message": {
+                    "type": "integer"
+                },
+                "valid_date": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "action_count": {
+                    "type": "integer"
+                },
+                "source_type": {
+                    "type": "short"
+                },
+                "source_value": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "verify": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "follows_count": {
+                    "type": "integer"
+                },
+                "unfollows_count": {
+                    "type": "integer"
+                },
+                "rating": {
+                    "type": "integer"
+                },
+                "subscribe_intdate": {
+                    "type": "integer"
+                },
+                "head_md5": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "last_action_time": {
+                    "type": "date"
+                },
+                "twenty_four_hour_actions": {
+                    "type": "integer"
+                },
+                "source_channel_id": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "channel_ids": {
+                    "type": "integer"
+                },
+                "email": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "latest_location": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "long"
+                        },
+                        "country": {
+                            "type": "string",
+                            "index": "not_analyzed"
+                        },
+                        "province": {
+                            "type": "string",
+                            "index": "not_analyzed"
+                        },
+                        "city": {
+                            "type": "string",
+                            "index": "not_analyzed"
+                        },
+                        "district": {
+                            "type": "string",
+                            "index": "not_analyzed"
+                        },
+                        "address": {
+                            "type": "string",
+                            "index": "not_analyzed"
+                        },
+                        "type_integer": {
+                            "type": "integer"
+                        },
+                        "create_time": {
+                            "type": "date"
+                        }
+                    }
+                },
+                "last_action": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "long"
+                        },
+                        "action_type": {
+                            "type": "string",
+                            "index": "not_analyzed"
+                        },
+                        "action_time": {
+                            "type": "date"
+                        }
+                    }
+                },
+                "custom_field": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "index": "not_analyzed"
+                        },
+                        "telephone": {
+                            "type": "string",
+                            "index": "not_analyzed"
+                        }
+                    }
+                },
+                "travel_to_location": {
+                    "type": "nested",
+                    "properties": {
+                        "id": {
+                            "type": "long"
+                        },
+                        "country": {
+                            "type": "string",
+                            "index": "not_analyzed"
+                        },
+                        "province": {
+                            "type": "string",
+                            "index": "not_analyzed"
+                        },
+                        "created_time": {
+                            "type": "date"
+                        }
+                    }
+                }
+            }
+        },
+        "who_share_post": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "randomcode": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "wid": {
+                    "type": "integer"
+                },
+                "who_share_openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "rid": {
+                    "type": "integer"
+                },
+                "ord": {
+                    "type": "short"
+                },
+                "share_type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created": {
+                    "type": "date"
+                },
+                "page_tag": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "kol": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                }
+            }
+        },
+        "who_click_share_post": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "randomcode": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "who_click_openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "created": {
+                    "type": "date"
+                },
+                "who_share_openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "who_current_share_openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                }
+            }
+        },
+        "user_action_record": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "wid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "source_type": {
+                    "type": "short"
+                },
+                "source_value": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "session_count": {
+                    "type": "integer"
+                },
+                "coupon_code": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created_date": {
+                    "type": "integer"
+                },
+                "action_time_short": {
+                    "type": "short"
+                }
+            }
+        },
+        "thirdparty_order": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "order_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total": {
+                    "type": "double"
+                },
+                "payment_method": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "shipping_method": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "coupon_code": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "shipping_amount": {
+                    "type": "double"
+                },
+                "discount_amount": {
+                    "type": "double"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "import_time": {
+                    "type": "date"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                }
+            }
+        },
+        "thirdparty_customer": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "email": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "telephone": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "name": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "gender": {
+                    "type": "integer"
+                },
+                "country": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "province": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "city": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "role_name": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "import_time": {
+                    "type": "date"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "account_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                }
+            }
+        },
+        "post_link_click": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "post_link_id": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "created": {
+                    "type": "date"
+                },
+                "mid": {
+                    "type": "integer"
+                }
+            }
+        },
+        "mongo_conversation_question_answer": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "mid": {
+                    "type": "integer"
+                },
+                "mongo_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "questionId": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "answer": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "next_question_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "conversation_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "is_validated": {
+                    "type": "integer"
+                },
+                "end": {
+                    "type": "integer"
+                },
+                "session_id": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "pass_validation": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "date"
+                }
+            }
+        },
+        "poll_vote": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "vote_id": {
+                    "type": "long"
+                },
+                "poll_id": {
+                    "type": "integer"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "question_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "poll_answer": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "ip_address": {
+                    "type": "long"
+                },
+                "open_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "vote_time": {
+                    "type": "date"
+                }
+            }
+        },
+        "interactive_record": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "action_type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "action_time": {
+                    "type": "date"
+                }
+            }
+        },
+        "wechat_customer_tag": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "tag_id_integer": {
+                    "type": "integer"
+                },
+                "count": {
+                    "type": "integer"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "status": {
+                    "type": "integer"
+                },
+                "source_channel_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "latest_location": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "country": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "province": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "city": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "district": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "address": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "type_integer": {
+                    "type": "integer"
+                },
+                "create_time": {
+                    "type": "date"
+                }
+            }
+        },
+        "follower_action_time_openid_index": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "action_time_integer": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "total_integer": {
+                    "type": "integer"
+                },
+                "ref_date": {
+                    "type": "date"
+                }
+            }
+        },
+        "mongo_custom_data_record": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "mongo_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "action_type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "module_name": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "appid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "data": {
+                    "type": "object"
+                },
+                "action_time": {
+                    "type": "date"
+                },
+                "created_time": {
+                    "type": "date"
+                },
+                "source_channel_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "follower_eav_index": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                }
+            }
+        },
+        "master_openid_mapping": {
+            "properties": {
+                "unid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "master_id": {
+                    "type": "long"
+                },
+                "mids": {
+                    "type": "integer"
+                },
+                "mids_count": {
+                    "type": "integer"
+                }
+            }
+        },
+        "message": {
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "from": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "to": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "is_mark": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "content": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "content_type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "event": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "reply_to": {
+                    "type": "integer"
+                },
+                "is_keyword": {
+                    "type": "integer"
+                },
+                "keyword_id": {
+                    "type": "long"
+                },
+                "is_read": {
+                    "type": "integer"
+                },
+                "local_image": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "message_source": {
+                    "type": "integer"
+                },
+                "source_channel_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "message_post_analytics_item_index": {
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "rid": {
+                    "type": "integer"
+                },
+                "part": {
+                    "type": "long"
+                },
+                "title": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "image": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "sent": {
+                    "type": "long"
+                },
+                "triggerd": {
+                    "type": "long"
+                },
+                "views": {
+                    "type": "long"
+                },
+                "readmore": {
+                    "type": "long"
+                },
+                "shares_reads": {
+                    "type": "long"
+                },
+                "shares_jssdk": {
+                    "type": "long"
+                },
+                "ref_date": {
+                    "type": "date"
+                },
+                "views_count": {
+                    "type": "long"
+                },
+                "readmore_count": {
+                    "type": "long"
+                },
+                "shares_api_count": {
+                    "type": "long"
+                },
+                "shares_jssdk_count": {
+                    "type": "long"
+                },
+                "shares_reads_count": {
+                    "type": "long"
+                },
+                "shares_timeline_count": {
+                    "type": "long"
+                },
+                "shares_timeline_user": {
+                    "type": "long"
+                },
+                "shares_appmessage_count": {
+                    "type": "long"
+                },
+                "shares_appmessage_user": {
+                    "type": "long"
+                },
+                "shares_qq_count": {
+                    "type": "long"
+                },
+                "shares_qq_user": {
+                    "type": "long"
+                },
+                "shares_qzone_count": {
+                    "type": "long"
+                },
+                "shares_qzone_user": {
+                    "type": "long"
+                },
+                "shares_weibo_count": {
+                    "type": "long"
+                },
+                "shares_weibo_user": {
+                    "type": "long"
+                }
+            }
+        },
+        "user_actions_detail_index": {
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created_time": {
+                    "type": "date"
+                }
+            }
+        },
+        "travel_to_location": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "province": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "country": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created_time": {
+                    "type": "date"
+                }
+            }
+        },
+        "ecommerce_data": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "channel": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "order_date": {
+                    "type": "date"
+                },
+                "order_intdate": {
+                    "type": "integer"
+                },
+                "order_no": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total": {
+                    "type": "double"
+                },
+                "source_channel_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "availability_check": {
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "update_time": {
+                    "type": "date"
+                }
+            }
+        },
+        "connection_engine_queue": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "postId": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "journeyId": {
+                    "type": "integer"
+                },
+                "journeyQueueId": {
+                    "type": "integer"
+                },
+                "flowId": {
+                    "type": "integer"
+                },
+                "scheduleId": {
+                    "type": "integer"
+                },
+                "sendTime": {
+                    "type": "date"
+                },
+                "status": {
+                    "type": "integer"
+                }
+            }
+        },
+        "mongo_follower_eav_index": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "mongo_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "source_channel_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "follower_tag_category_count": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "tag_category_id": {
+                    "type": "integer"
+                },
+                "count": {
+                    "type": "integer"
+                },
+                "source_channel_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "user_action_record_lbs": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "wid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "source_type": {
+                    "type": "short"
+                },
+                "source_value": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "session_count": {
+                    "type": "integer"
+                },
+                "coupon_code": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created_date": {
+                    "type": "integer"
+                },
+                "action_time_short": {
+                    "type": "short"
+                }
+            }
+        },
+        "user_action_record_menu": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "wid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "source_type": {
+                    "type": "short"
+                },
+                "source_value": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "session_count": {
+                    "type": "integer"
+                },
+                "coupon_code": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created_date": {
+                    "type": "integer"
+                },
+                "action_time_short": {
+                    "type": "short"
+                }
+            }
+        },
+        "user_action_record_custom_data_event": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "wid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "source_type": {
+                    "type": "short"
+                },
+                "source_value": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "session_count": {
+                    "type": "integer"
+                },
+                "coupon_code": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created_date": {
+                    "type": "integer"
+                },
+                "action_time_short": {
+                    "type": "short"
+                }
+            }
+        },
+        "user_action_record_subscribe": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "wid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "source_type": {
+                    "type": "short"
+                },
+                "source_value": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "session_count": {
+                    "type": "integer"
+                },
+                "coupon_code": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created_date": {
+                    "type": "integer"
+                },
+                "action_time_short": {
+                    "type": "short"
+                }
+            }
+        },
+        "user_action_record_message": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "wid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "source_type": {
+                    "type": "short"
+                },
+                "source_value": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "session_count": {
+                    "type": "integer"
+                },
+                "coupon_code": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created_date": {
+                    "type": "integer"
+                },
+                "action_time_short": {
+                    "type": "short"
+                }
+            }
+        },
+        "user_action_record_coupon": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "wid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "source_type": {
+                    "type": "short"
+                },
+                "source_value": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "session_count": {
+                    "type": "integer"
+                },
+                "coupon_code": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created_date": {
+                    "type": "integer"
+                },
+                "action_time_short": {
+                    "type": "short"
+                }
+            }
+        },
+        "user_action_record_post": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "wid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "source_type": {
+                    "type": "short"
+                },
+                "source_value": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "session_count": {
+                    "type": "integer"
+                },
+                "coupon_code": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created_date": {
+                    "type": "integer"
+                },
+                "action_time_short": {
+                    "type": "short"
+                }
+            }
+        },
+        "user_action_record_others": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "wid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "source_type": {
+                    "type": "short"
+                },
+                "source_value": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "session_count": {
+                    "type": "integer"
+                },
+                "coupon_code": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created_date": {
+                    "type": "integer"
+                },
+                "action_time_short": {
+                    "type": "short"
+                }
+            }
+        },
+        "user_action_record_user_view_card": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "id": {
+                    "type": "long"
+                },
+                "wid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "create_time": {
+                    "type": "date"
+                },
+                "source_type": {
+                    "type": "short"
+                },
+                "source_value": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "session_count": {
+                    "type": "integer"
+                },
+                "coupon_code": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "created_date": {
+                    "type": "integer"
+                },
+                "action_time_short": {
+                    "type": "short"
+                }
+            }
+        },
+        "followers_actions_date_index_user_view_card": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "followers_actions_date_index": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "followers_actions_date_index_qrcode": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "followers_actions_date_index_lbs": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "followers_actions_date_index_menu": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "followers_actions_date_index_message": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "followers_actions_date_index_subscribe": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "followers_actions_date_index_conversation": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "followers_actions_date_index_post": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "followers_actions_date_index_journey": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "followers_actions_date_index_custom_data_event": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "followers_actions_date_index_coupon": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "followers_actions_date_index_poll": {
+            "_parent": {
+                "type": "wechat_customer"
+            },
+            "properties": {
+                "date_index_id": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "openid": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "openid_crc32": {
+                    "type": "long"
+                },
+                "date_total_count": {
+                    "type": "nested",
+                    "properties": {
+                        "created_date": {
+                            "type": "integer"
+                        },
+                        "total_number": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "keyword": {
+                    "type": "string",
+                    "index": "not_analyzed"
+                },
+                "total_number": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
