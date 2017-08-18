@@ -22,9 +22,9 @@ COPY rabbitmq-env.conf /etc/rabbitmq/rabbitmq-env.conf
 VOLUME ["/var/lib/rabbitmq"]
 
 #Start RabbitMq
-COPY entrypoint.sh /etc/
-ENTRYPOINT ["entrypoint.sh"]
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+#ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 15672 25672 4369 5672
 
-CMD ["rabbitmq-server"]
+CMD entrypoint.sh rabbitmq-server
