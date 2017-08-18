@@ -22,7 +22,8 @@ COPY rabbitmq-env.conf /etc/rabbitmq/rabbitmq-env.conf
 VOLUME ["/var/lib/rabbitmq"]
 
 #Start RabbitMq
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN ln -s /usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 #ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 15672 25672 4369 5672

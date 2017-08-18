@@ -28,7 +28,7 @@ if [[ "$1" == rabbitmq* ]] && [ "$(id -u)" = '0' ]; then
 	if [ "$1" = 'rabbitmq-server' ]; then
 		chown -R rabbitmq /var/lib/rabbitmq
 	fi
-	exec rabbitmq "$BASH_SOURCE" "$@"
+	#exec rabbitmq "$BASH_SOURCE" "$@"
 fi
 
 # backwards compatibility for old environment variables
