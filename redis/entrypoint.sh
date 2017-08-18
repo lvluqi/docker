@@ -9,7 +9,7 @@ fi
 
 # allow the container to be started with `--user`
 if [ "$1" = 'redis-server' -a "$(id -u)" = '0' ]; then
-	chown -R redis .
+	chown -R redis /var/lib/redis
         CONFIG_FILE=/etc/redis.conf
 	#exec redis "$0" "$@"
 fi
