@@ -2,6 +2,9 @@
 #rabbitmq
 FROM registry.cn-hangzhou.aliyuncs.com/dstack/centos:latest
 
+ENV RABBITMQ_VERSION 3.5.7
+ENV RABBITMQ_CENTOS_VERSION 3.5.7-1
+
 RUN yum -y install erlang logrotate && \
             rpm --import https://www.rabbitmq.com/rabbitmq-signing-key-public.asc && \
             rpm -ivh https://www.rabbitmq.com/releases/rabbitmq-server/v$RABBITMQ_VERSION/rabbitmq-server-${RABBITMQ_CENTOS_VERSION}.noarch.rpm && \
@@ -15,9 +18,6 @@ RUN yum -y install erlang logrotate && \
 
 #rabbitmq-env.conf
 COPY rabbitmq-env.conf /etc/rabbitmq/rabbitmq-env.conf
-
-ENV RABBITMQ_VERSION 3.5.7
-ENV RABBITMQ_CENTOS_VERSION 3.5.7-1
 
 VOLUME ["/var/lib/rabbitmq"]
 RUN ln -sf /var/lib/rabbitmq/.erlang.cookie /root/
