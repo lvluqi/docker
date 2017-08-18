@@ -1,6 +1,6 @@
 #redis
 
-FROM registry.cn-hangzhou.aliyuncs.com/dstack/elasticsearch:latest 
+FROM registry.cn-hangzhou.aliyuncs.com/dstack/centos:latest 
 
 #Install Redis
 RUN yum -y install redis

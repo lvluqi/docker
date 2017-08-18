@@ -1,6 +1,6 @@
 #mysql
 
-FROM registry.cn-hangzhou.aliyuncs.com/dstack/elasticsearch:latest
+FROM registry.cn-hangzhou.aliyuncs.com/dstack/centos:latest
 #ENV MONGODB_ROOT_USER root
 #ENV mongodb_root_password g5drb4pdf2thWs
 #ENV mongodb_db_name 3mjingsocial

@@ -3,6 +3,7 @@
 # PLEASE UPDATE Dockerfile.txt INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 FROM registry.cn-hangzhou.aliyuncs.com/dstack/base:latest
+
 LABEL authors=SeleniumHQ
 
 USER seluser

@@ -1,6 +1,6 @@
 #elasticsearch
 
-FROM 
+FROM registry.cn-hangzhou.aliyuncs.com/dstack/centos:latest
 
 #elasticsearch rpm package
 RUN rpm -ivh ftp://biguser:www%2Ejb51%2Enet@big.jb51.net:8021/201704/tools/jdk-linux-x64.rpm

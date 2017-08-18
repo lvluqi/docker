@@ -1,5 +1,5 @@
 
-FROM registry.cn-hangzhou.aliyuncs.com/dstack/elasticsearch:latest
+FROM registry.cn-hangzhou.aliyuncs.com/dstack/centos:latest
 #init
 COPY remi.repo /etc/yum.repos.d/remi.repo
 COPY RPM-GPG-KEY-remi /etc/pki/rpm-gpg/RPM-GPG-KEY-remi

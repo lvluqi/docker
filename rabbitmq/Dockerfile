@@ -1,6 +1,6 @@
 
 #rabbitmq
-FROM registry.cn-hangzhou.aliyuncs.com/dstack/elasticsearch:latest
+FROM registry.cn-hangzhou.aliyuncs.com/dstack/centos:latest
 
 RUN yum -y install erlang logrotate && \
             rpm --import https://www.rabbitmq.com/rabbitmq-signing-key-public.asc && \
