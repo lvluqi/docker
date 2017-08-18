@@ -28,4 +28,4 @@ RUN ln -s /usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 
 EXPOSE 15672 25672 4369 5672
 
-CMD entrypoint.sh rabbitmq-server
+CMD /entrypoint.sh rabbitmq-server
