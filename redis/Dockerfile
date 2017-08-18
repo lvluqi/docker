@@ -1,41 +1,19 @@
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
-# PLEASE UPDATE Dockerfile.txt INSTEAD OF THIS FILE
-# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM registry.cn-hangzhou.aliyuncs.com/dstack/base:latest
-LABEL authors=SeleniumHQ
+#redis
 
-USER seluser
+FROM registry.cn-hangzhou.aliyuncs.com/dstack/elasticsearch:latest 
 
-#========================
-# Selenium Configuration
-#========================
+#Install Redis
+RUN yum -y install redis
 
-EXPOSE 4444
+#Modify Redis configure file
+COPY redis.conf /etc/redis.conf
 
-# As integer, maps to "maxSession"
-ENV GRID_MAX_SESSION 5
-# In milliseconds, maps to "newSessionWaitTimeout"
-ENV GRID_NEW_SESSION_WAIT_TIMEOUT -1
-# As a boolean, maps to "throwOnCapabilityNotPresent"
-ENV GRID_THROW_ON_CAPABILITY_NOT_PRESENT true
-# As an integer
-ENV GRID_JETTY_MAX_THREADS -1
-# In milliseconds, maps to "cleanUpCycle"
-ENV GRID_CLEAN_UP_CYCLE 5000
-# In seconds, maps to "browserTimeout"
-ENV GRID_BROWSER_TIMEOUT 0
-# In seconds, maps to "timeout"
-ENV GRID_TIMEOUT 30
-# Debug
-ENV GRID_DEBUG false
+#VOLUME
+VOLUME ["/var/lib/redis"]
 
-COPY generate_config \
-    entry_point.sh \
-    /opt/bin/
-# Running this command as sudo just to avoid the message:
-# To run a command as administrator (user "root"), use "sudo <command>". See "man sudo_root" for details.
-# When logging into the container
-RUN /opt/bin/generate_config > /opt/selenium/config.json
+COPY entrypoint.sh /usr/local/bin
+ENTRYPOINT ["entrypoint.sh"]
 
-CMD ["/opt/bin/entry_point.sh"]
+EXPOSE 6379
+
+CMD ["redis-server"]
