@@ -21,10 +21,10 @@ COPY rabbitmq-env.conf /etc/rabbitmq/rabbitmq-env.conf
 
 VOLUME ["/var/lib/rabbitmq"]
 
-#EXPOSE
+#Start RabbitMq
+COPY entrypoint.sh /etc/
+ENTRYPOINT ["entrypoint.sh"]
+
 EXPOSE 15672 25672 4369 5672
 
-#Start RabbitMq
-COPY supervisord.conf /etc/supervisord.conf
-COPY entrypoint.sh /etc/
-CMD /etc/entrypoint.sh
+CMD ["rabbitmq-server"]
