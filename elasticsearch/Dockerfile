@@ -27,6 +27,9 @@ RUN ./bin/plugin install com.floragunn/search-guard-2/2.4.1.12
 #RUN ./bin/plugin install com.floragunn/search-guard-ssl/2.4.1.21
 RUN yum -y install git
 
+ENV PATH /usr/share/elasticsearch/bin:$PATH
+
+RUN echo "ES_HEAP_SIZE=4g" /etc/sysconfig/elasticsearch
 #Mkdir /opt/backups/jingsocial/
 RUN mkdir /opt/backups/jingsocial/ -p
 
@@ -40,5 +43,6 @@ EXPOSE 9200 9300
 
 #Start elasticsearch
 COPY docker-entryporint.sh /usr/local/bin/
+COPY entrypoint.sh /usr/local/bin/
 RUN ln -s /usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 CMD /entryporint.sh elasticsearch
