@@ -1,5 +1,5 @@
 conn = new Mongo();
-db.conn = getDB('3mjingsocial');
+db = conn.getDB('3mjingsocial');
 
 db.createCollection('admin_custom_data_record');
 db.createCollection('api_record');
