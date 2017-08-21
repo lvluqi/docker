@@ -234,6 +234,9 @@ if [ "$originalArgOne" = 'mongod' ]; then
 
 	unset "${!MONGO_INITDB_@}"
 fi
-echo "security:">> /etc/mongod.conf
-echo "  authorization: enabled" >> /etc/mongod.conf
+grep "security:" /etc/mongod.conf
+if [ $? -ne 0  ] ; then
+    echo "security:">> /etc/mongod.conf
+    echo "  authorization: enabled" >> /etc/mongod.conf
+fi
 exec "$@" -f /etc/mongod.conf
