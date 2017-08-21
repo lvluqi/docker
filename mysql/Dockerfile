@@ -1,6 +1,6 @@
 FROM registry.cn-hangzhou.aliyuncs.com/dstack/centos:latest
 
-ENV MYSQL_ROOT_PASSWORD=redhat
+ENV MYSQL_ROOT_PASSWORD=DevStageRedis2C3pQ5rpldkl98
 ENV MYSQL_DATABASE=3mjingsocial
 ENV MYSQL_USER=3mjingsocial
 ENV MYSQL_PASSWORD=3mH4eva5pedE2shes
