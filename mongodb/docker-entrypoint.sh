@@ -198,9 +198,9 @@ if [ "$originalArgOne" = 'mongod' ]; then
 
 			"${mongo[@]}" "$rootAuthDatabase" <<-EOJS
 				db.createUser({
-					user: "$MONGO_INITDB_ROOT_USERNAME",
-					pwd: "$MONGO_INITDB_ROOT_PASSWORD",
-					roles: [ { role: 'root', db: "$rootAuthDatabase" } ]
+					user: $(jq --arg 'user' "$MONGO_INITDB_ROOT_USERNAME" --null-input '$user'),
+					pwd: $(jq --arg 'pwd' "$MONGO_INITDB_ROOT_PASSWORD" --null-input '$pwd'),
+					roles: [ { role: 'root', db: $(jq --arg 'db' "$rootAuthDatabase" --null-input '$db') } ]
 				})
 			EOJS
 
