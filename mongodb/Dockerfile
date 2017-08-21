@@ -13,7 +13,7 @@ RUN yum -y install mongodb-org && yum -y install pymongo
 
 RUN mkdir /docker-entrypoint-initdb.d/
 COPY mongo_db_collection_create.js /docker-entrypoint-initdb.d/
-COPY mongo_root_user_create.js /docker-entrypoint-initdb.d/
+#COPY mongo_root_user_create.js /docker-entrypoint-initdb.d/
 COPY mongo_user_create.js /docker-entrypoint-initdb.d/
 
 #RUN echo "mongodb hard nofile 64000" >> /etc/security/limits.conf
