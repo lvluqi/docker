@@ -225,8 +225,6 @@ if [ "$originalArgOne" = 'mongod' ]; then
 
 		"$@" -f /etc/mongod.conf --pidfilepath="$pidfile" --shutdown
 		rm "$pidfile"
-                echo "security:">> /etc/mongod.conf
-                echo "  authorization: enabled" >> /etc/mongod.conf
 		trap - EXIT
 
 		echo
@@ -236,4 +234,6 @@ if [ "$originalArgOne" = 'mongod' ]; then
 
 	unset "${!MONGO_INITDB_@}"
 fi
+echo "security:">> /etc/mongod.conf
+echo "  authorization: enabled" >> /etc/mongod.conf
 exec "$@" -f /etc/mongod.conf
