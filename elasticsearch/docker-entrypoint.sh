@@ -1,8 +1,5 @@
 #!/bin/bash
 
-ES_DIR=/usr/share/elasticsearch
-ES_CONFIG_DIR=/etc/elasticsearch
-
 set -e
 
 # Add elasticsearch as command if needed
@@ -25,9 +22,9 @@ if [ "$1" = 'elasticsearch' -a "$(id -u)" = '0' ]; then
 	#exec gosu elasticsearch "$BASH_SOURCE" "$@"
 fi
 
-cd $ES_WORKDIR && git clone https://github.com/floragunncom/search-guard-ssl.git && cd search-guard-ssl && git checkout {{ elasticsearch_version }}
+cd $ES_WORKDIR && git clone https://github.com/floragunncom/search-guard-ssl.git && cd search-guard-ssl && git checkout es-2.4.1
 
-chmod a+x $ES_WORKDIR/search-guard-ssl/example-pki-scripts/* && sed -i 's/changeit/{{ elasticsearch_keystore_password }}/g' $ES_WORKDIR/search-guard-ssl/example-pki-scripts/example.sh
+chmod a+x $ES_WORKDIR/search-guard-ssl/example-pki-scripts/* && sed -i 's/changeit/a4Frs9dtgx92119De/g' $ES_WORKDIR/search-guard-ssl/example-pki-scripts/example.sh
 
 ./example.sh chdir chdir=$ES_WORKDIR/search-guard-ssl/example-pki-scripts
 

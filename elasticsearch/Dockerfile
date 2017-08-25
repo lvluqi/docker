@@ -5,11 +5,16 @@ FROM registry.cn-hangzhou.aliyuncs.com/dstack/centos:latest
 #elasticsearch rpm package
 RUN rpm -ivh ftp://biguser:www%2Ejb51%2Enet@big.jb51.net:8021/201704/tools/jdk-linux-x64.rpm
 
+ENV ES_DIR /usr/share/elasticsearch
+ENV ES_CONFIG_DIR /etc/elasticsearch
+ENV ES_WORKDIR /usr/share/elasticsearch/plugins
 #Java Env
-RUN echo "JAVA_HOME=/usr/java/jdk1.8.0_131" >> /etc/profile
-RUN echo "CLASS_PATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib">> /etc/profile
-RUN echo "PATH=$PATH:$JAVA_HOME/bin">> /etc/profile
-RUN echo "export JAVA_HOME">> /etc/profile
+RUN cat >> /etc/profile <<-EOF
+JAVA_HOME=/usr/java/jdk1.8.0_131
+CLASS_PATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+PATH=$PATH:$JAVA_HOME/bin
+export JAVA_HOME
+EOF
 RUN source /etc/profile
 
 #Install Elasticsearch Package
@@ -21,19 +26,25 @@ COPY elasticsearch.yml /etc/elasticsearch/elasticsearch.yml
 RUN chown root.elasticsearch /etc/elasticsearch/elasticsearch.yml
 
 #Install Plugh
-WORKDIR /usr/share/elasticsearch
+WORKDIR /usr/share/elasticsearch/
 RUN ./bin/plugin install lmenezes/elasticsearch-kopf
-ADD ik.zip ./plugins/
+COPY ik.zip ./plugins/
 COPY search-guard-2.tar.gz ./plugins
 COPY search-guard-ssl.tar.gz ./plugins
-#RUN ./bin/plugin install com.floragunn/search-guard-2/2.4.1.12
-#RUN ./bin/plugin install com.floragunn/search-guard-ssl/2.4.1.21
+
 RUN yum -y install git
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 
 RUN echo "ES_HEAP_SIZE=4g" /etc/sysconfig/elasticsearch
 
+RUN for path in \
+       $ES_DIR/data \
+       $ES_DIR/logs \
+  ; do
+       mkdir "$path"
+  done
+        
 RUN mkdir /opt/backups/jingsocial/ -p
 
 #VOLUME
