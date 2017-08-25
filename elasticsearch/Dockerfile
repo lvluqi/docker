@@ -30,12 +30,8 @@ ENV PATH /usr/share/elasticsearch/bin:$PATH
 
 RUN echo "ES_HEAP_SIZE=4g" /etc/sysconfig/elasticsearch
 
-RUN for path in \
-       $ES_DIR/data \
-       $ES_DIR/logs \
-  ; do
-       mkdir "$path"
-  done
+RUN mkdir $ES_DIR/data \
+    && mkdir $ES_DIR/logs
         
 RUN mkdir /opt/backups/jingsocial/ -p
 
