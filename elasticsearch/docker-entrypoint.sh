@@ -21,6 +21,12 @@ if [ "$1" = 'elasticsearch' -a "$(id -u)" = '0' ]; then
 	set -- gosu elasticsearch "$@"
 	#exec gosu elasticsearch "$BASH_SOURCE" "$@"
 fi
+[ $? -eq 0 ] && cat >> /etc/profile <<-EOF
+JAVA_HOME=/usr/java/jdk1.8.0_131
+CLASS_PATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+PATH=$PATH:$JAVA_HOME/bin
+export JAVA_HOME
+EOF
 
 cd $ES_WORKDIR && git clone https://github.com/floragunncom/search-guard-ssl.git && cd search-guard-ssl && git checkout es-2.4.1
 

@@ -8,14 +8,6 @@ RUN rpm -ivh ftp://biguser:www%2Ejb51%2Enet@big.jb51.net:8021/201704/tools/jdk-l
 ENV ES_DIR /usr/share/elasticsearch
 ENV ES_CONFIG_DIR /etc/elasticsearch
 ENV ES_WORKDIR /usr/share/elasticsearch/plugins
-#Java Env
-RUN cat >> /etc/profile <<-EOF
-JAVA_HOME=/usr/java/jdk1.8.0_131
-CLASS_PATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib
-PATH=$PATH:$JAVA_HOME/bin
-export JAVA_HOME
-EOF
-RUN source /etc/profile
 
 #Install Elasticsearch Package
 RUN rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
