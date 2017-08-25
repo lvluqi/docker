@@ -125,3 +125,11 @@ index.indexing.slowlog.threshold.index.debug: 2s
 index.indexing.slowlog.threshold.index.trace: 500ms
 
 path.repo: ["/opt/backups/jingsocial"]
+
+index.analysis.analyzer.ik.alias: [ik_analyzer]
+index.analysis.analyzer.ik.type: ik
+index.analysis.analyzer.ik_max_word.type: ik
+index.analysis.analyzer.ik_max_word.use_smart: false
+index.analysis.analyzer.ik_smart.type: ik
+index.analysis.analyzer.ik_smart.use_smart: true
+index.analysis.analyzer.default.type: ik

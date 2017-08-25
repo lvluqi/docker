@@ -23,17 +23,18 @@ RUN chown root.elasticsearch /etc/elasticsearch/elasticsearch.yml
 #Install Plugh
 WORKDIR /usr/share/elasticsearch
 RUN ./bin/plugin install lmenezes/elasticsearch-kopf
-RUN ./bin/plugin install com.floragunn/search-guard-2/2.4.1.12
+ADD ik.zip ./plugins/
+COPY search-guard-2.tar.gz .
+COPY search-guard-ssl.tar.gz .
+#RUN ./bin/plugin install com.floragunn/search-guard-2/2.4.1.12
 #RUN ./bin/plugin install com.floragunn/search-guard-ssl/2.4.1.21
 RUN yum -y install git
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 
 RUN echo "ES_HEAP_SIZE=4g" /etc/sysconfig/elasticsearch
-#Mkdir /opt/backups/jingsocial/
-RUN mkdir /opt/backups/jingsocial/ -p
 
-#RUN /usr/share/elasticsearch/bin/plugin install -b com.floragunn/search-guard-ssl/2.4.1.12
+RUN mkdir /opt/backups/jingsocial/ -p
 
 #VOLUME
 VOLUME ["/var/lib/elasticsearch"]
