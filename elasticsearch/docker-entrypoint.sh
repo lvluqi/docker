@@ -33,10 +33,10 @@ EOF
      chmod +x $ES_WORKDIR/search-guard-2/tools/* && $ES_WORKDIR/search-guard-2/tools/sgadmin.sh -cd $ES_DIR/plugins/search-guard-2/sgconfig/ -ks $ES_DIR/plugins/search-guard-2/sgconfig/keystore.jks -kspass a4Frs9dtgx92119De -ts $ES_DIR/plugins/search-guard-2/sgconfig/truststore.jks -tspass a4Frs9dtgx92119De -nhnv --diagnose -icl -hlocalhost
      [ $? -eq 0 ] && curl -XPOST 'http://admin:V8R4i5HsN85K8EFm@localhost:9200/mmmjingsocial_default_index' -d @/docker-init.d/es.init.standard.mappings.json && \
           curl -XPOST 'http://admin:V8R4i5HsN85K8EFm@localhost:9200/mmmjingsocial_top_keyword_messages' -d @/docker-init.d/es.init.ik_message.mappings.json
-     [ $? -eq 0 ] && /etc/init.d/elasticsearch stop && echo "\$JAVA_OPTS="\$JAVA_OPTS -Des.default.path.conf=$ES_CONFIG_DIR"" >> $ES_DIR/bin/elasticsearch.in.sh && echo "\$JAVA_OPTS="\$JAVA_OPTS -Des.insecure.allow.root=true"" >> $ES_DIR/bin/elasticsearch.in.sh
+     [ $? -eq 0 ] && /etc/init.d/elasticsearch stop && echo "JAVA_OPTS=\"\$JAVA_OPTS -Des.default.path.conf=$ES_CONFIG_DIR\"" >> $ES_DIR/bin/elasticsearch.in.sh && echo "JAVA_OPTS=\"\$JAVA_OPTS -Des.insecure.allow.root=true\"" >> $ES_DIR/bin/elasticsearch.in.sh
      [ $? -eq 0 ] && cd && rm -rf $ES_DIR/search-guard-ssl
   fi
-     ln -s /etc/elasticsearch/ $ES_DIR/config && ln -s /var/lib/elasticsearch $ES_DIR/data && ls -s /var/lib/elasticsearch $ES_DIR/logs
+     ln -s /etc/elasticsearch/ $ES_DIR/config && ln -s /var/lib/elasticsearch $ES_DIR/data && ln -s /var/lib/elasticsearch $ES_DIR/logs
 	for path in \
 		/usr/share/elasticsearch/data \
 		/usr/share/elasticsearch/logs \
