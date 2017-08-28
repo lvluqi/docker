@@ -29,7 +29,7 @@ PATH=$PATH:$JAVA_HOME/bin
 export JAVA_HOME
 EOF
 
-if [ ! -d "$ES_DIR/search-guard-ssl" ];then
+if [ -d "$ES_DIR/search-guard-ssl" ];then
    cd $ES_DIR && git clone https://github.com/floragunncom/search-guard-ssl.git && cd search-guard-ssl && git checkout es-2.4.1
 
    chmod a+x $ES_WORKDIR/search-guard-ssl/example-pki-scripts/* && sed -i 's/changeit/a4Frs9dtgx92119De/g' $ES_DIR/search-guard-ssl/example-pki-scripts/example.sh
@@ -45,6 +45,7 @@ if [ ! -d "$ES_DIR/search-guard-ssl" ];then
    chmod +x $ES_WORKDIR/search-guard-2/tools/* && $ES_WORKDIR/search-guard-2/tools/sgadmin.sh -cd $ES_DIR/plugins/search-guard-2/sgconfig/ -ks $ES_DIR/plugins/search-guard-2/sgconfig/keystore.jks -kspass a4Frs9dtgx92119De -ts $ES_DIR/plugins/search-guard-2/sgconfig/truststore.jks -tspass a4Frs9dtgx92119De -nhnv --diagnose -icl -hlocalhost
    [ $? -eq 0 ] && curl -XPOST 'http://admin:V8R4i5HsN85K8EFm@localhost:9200/mmmjingsocial_default_index' -d @/docker-init.d/es.init.standard.mappings.json && \
           curl -XPOST 'http://admin:V8R4i5HsN85K8EFm@localhost:9200/mmmjingsocial_top_keyword_messages' -d @/docker-init.d/es.init.ik_message.mappings.json
+   [ $? -eq 0 ] && /etc/init.d/elasticsearch stop && echo "\$JAVA_OPTS="\$JAVA_OPTS -Des.default.path.conf=$ES_CONFIG_DIR"" >> $ES_DIR/bin/elasticsearch.in.sh && echo "\$JAVA_OPTS="\$JAVA_OPTS -Des.insecure.allow.root=true"" >> $ES_DIR/bin/elasticsearch.in.sh
+   [ $? -eq 0 ] && cd && rm -rf $ES_DIR/search-guard-ssl
 fi
-[ $? -eq 0 ] && cd && rm -rf $ES_DIR/search-guard-ssl
 exec "$@"
