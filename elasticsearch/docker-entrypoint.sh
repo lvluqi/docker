@@ -14,11 +14,12 @@ if [ "$1" = 'elasticsearch' -a "$(id -u)" = '0' ]; then
 	for path in \
 		/usr/share/elasticsearch/data \
 		/usr/share/elasticsearch/logs \
-	; do
+	; doo
+                mkdir -p "$path"
 		chown -R elasticsearch:elasticsearch "$path"
 	done
 	
-	set -- gosu elasticsearch "$@"
+	#set -- gosu elasticsearch "$@"
 	#exec gosu elasticsearch "$BASH_SOURCE" "$@"
 fi
 [ $? -eq 0 ] && cat >> /etc/profile <<-EOF
@@ -31,13 +32,13 @@ EOF
 if [ -d "$ES_DIR/search-guard-ssl" ];then
    cd $ES_DIR && git clone https://github.com/floragunncom/search-guard-ssl.git && cd search-guard-ssl && git checkout es-2.4.1
 
-   chmod a+x $ES_WORKDIR/search-guard-ssl/example-pki-scripts/* && sed -i 's/changeit/a4Frs9dtgx92119De/g' $ES_WORKDIR/search-guard-ssl/example-pki-scripts/example.sh
+   chmod a+x $ES_WORKDIR/search-guard-ssl/example-pki-scripts/* && sed -i 's/changeit/a4Frs9dtgx92119De/g' $ES_DIR/search-guard-ssl/example-pki-scripts/example.sh
 
-   cd $ES_WORKDIR/search-guard-ssl/example-pki-scripts && ./example.sh
+   cd $ES_DIR/search-guard-ssl/example-pki-scripts && ./example.sh
 
-   cp $ES_WORKDIR/search-guard-ssl/example-pki-scripts/node-0-keystore.jks $ES_CONFIG_DIR && cp $ES_WORKDIR/search-guard-ssl/example-pki-scripts/truststore.jks $ES_CONFIG_DIR
+   cp $ES_DIR/search-guard-ssl/example-pki-scripts/node-0-keystore.jks $ES_CONFIG_DIR && cp $ES_DIR/search-guard-ssl/example-pki-scripts/truststore.jks $ES_CONFIG_DIR
 
-   cp $ES_WORKDIR/search-guard-ssl/example-pki-scripts/node-0-keystore.jks $ES_WORKDIR/search-guard-2/sgconfig && cp $ES_WORKDIR/search-guard-ssl/example-pki-scripts/truststore.jks $ES_WORKDIR/search-guard-2/sgconfig
+   cp $ES_DIR/search-guard-ssl/example-pki-scripts/node-0-keystore.jks $ES_WORKDIR/search-guard-2/sgconfig && cp $ES_DIR/search-guard-ssl/example-pki-scripts/truststore.jks $ES_WORKDIR/search-guard-2/sgconfig
 
    mv $ES_WORKDIR/search-guard-2/sgconfig/node-0-keystore.jks $ES_WORKDIR/search-guard-2/sgconfig/keystore.jks
 fi

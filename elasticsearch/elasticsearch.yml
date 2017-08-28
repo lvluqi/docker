@@ -133,3 +133,12 @@ index.analysis.analyzer.ik_max_word.use_smart: false
 index.analysis.analyzer.ik_smart.type: ik
 index.analysis.analyzer.ik_smart.use_smart: true
 index.analysis.analyzer.default.type: ik
+
+searchguard.ssl.transport.keystore_filepath: node-0-keystore.jks
+searchguard.ssl.transport.keystore_password: a4Frs9dtgx92119De
+searchguard.ssl.transport.truststore_filepath: truststore.jks
+searchguard.ssl.transport.truststore_password: a4Frs9dtgx92119De
+searchguard.ssl.transport.enforce_hostname_verification: false
+
+searchguard.authcz.admin_dn:
+  - CN=kirk,OU=client,O=client,L=test, C=DE
