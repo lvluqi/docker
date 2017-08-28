@@ -20,10 +20,10 @@ RUN chown root.elasticsearch /etc/elasticsearch/elasticsearch.yml
 #Install Plugh
 WORKDIR /usr/share/elasticsearch/
 RUN ./bin/plugin install lmenezes/elasticsearch-kopf && ./bin/plugin install -b com.floragunn/search-guard-ssl/2.4.1.21 &&  ./bin/plugin install -b com.floragunn/search-guard-2/2.4.1.12
+RUN yum -y install git
 RUN git clone https://github.com/floragunncom/search-guard-ssl.git && cd search-guard-ssl && git checkout es-2.4.1
 ADD ik.tar.gz ./plugins/
 
-RUN yum -y install git
 
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 
