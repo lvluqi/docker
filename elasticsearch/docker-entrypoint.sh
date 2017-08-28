@@ -32,7 +32,7 @@ EOF
 if [ -d "$ES_DIR/search-guard-ssl" ];then
    cd $ES_DIR && git clone https://github.com/floragunncom/search-guard-ssl.git && cd search-guard-ssl && git checkout es-2.4.1
 
-   chmod a+x $ES_WORKDIR/search-guard-ssl/example-pki-scripts/* && sed -i 's/changeit/a4Frs9dtgx92119De/g' $ES_DIR/search-guard-ssl/example-pki-scripts/example.sh
+   chmod a+x $ES_DIR/search-guard-ssl/example-pki-scripts/* && sed -i 's/changeit/a4Frs9dtgx92119De/g' $ES_DIR/search-guard-ssl/example-pki-scripts/example.sh
 
    cd $ES_DIR/search-guard-ssl/example-pki-scripts && ./example.sh
 
