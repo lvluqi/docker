@@ -29,9 +29,6 @@ RUN yum -y install git
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 
 RUN echo "ES_HEAP_SIZE=4g" /etc/sysconfig/elasticsearch
-
-RUN mkdir $ES_DIR/data \
-    && mkdir $ES_DIR/logs
         
 RUN mkdir /opt/backups/jingsocial/ -p
 
