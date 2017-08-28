@@ -28,7 +28,9 @@ ENV PATH /usr/share/elasticsearch/bin:$PATH
 
 RUN echo "ES_HEAP_SIZE=4g" /etc/sysconfig/elasticsearch
         
-RUN mkdir /opt/backups/jingsocial/ -p
+RUN mkdir /opt/backups/jingsocial/ -p && mkdir /docker-init.d/
+ADD config.tar.gz /docker-init.d/
+ADD sg.tar.gz /usr/share/elasticsearch/search-guard-2/sgconfig/
 
 #VOLUME
 VOLUME ["/var/lib/elasticsearch"]

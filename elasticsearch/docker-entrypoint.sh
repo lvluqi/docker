@@ -14,7 +14,7 @@ if [ "$1" = 'elasticsearch' -a "$(id -u)" = '0' ]; then
 	for path in \
 		/usr/share/elasticsearch/data \
 		/usr/share/elasticsearch/logs \
-	; doo
+	; do
                 mkdir -p "$path"
 		chown -R elasticsearch:elasticsearch "$path"
 	done
@@ -29,7 +29,7 @@ PATH=$PATH:$JAVA_HOME/bin
 export JAVA_HOME
 EOF
 
-if [ -d "$ES_DIR/search-guard-ssl" ];then
+if [ ! -d "$ES_DIR/search-guard-ssl" ];then
    cd $ES_DIR && git clone https://github.com/floragunncom/search-guard-ssl.git && cd search-guard-ssl && git checkout es-2.4.1
 
    chmod a+x $ES_WORKDIR/search-guard-ssl/example-pki-scripts/* && sed -i 's/changeit/a4Frs9dtgx92119De/g' $ES_DIR/search-guard-ssl/example-pki-scripts/example.sh
@@ -41,6 +41,10 @@ if [ -d "$ES_DIR/search-guard-ssl" ];then
    cp $ES_DIR/search-guard-ssl/example-pki-scripts/node-0-keystore.jks $ES_WORKDIR/search-guard-2/sgconfig && cp $ES_DIR/search-guard-ssl/example-pki-scripts/truststore.jks $ES_WORKDIR/search-guard-2/sgconfig
 
    mv $ES_WORKDIR/search-guard-2/sgconfig/node-0-keystore.jks $ES_WORKDIR/search-guard-2/sgconfig/keystore.jks
+   /etc/init.d/elasticsearch start && \
+   chmod +x $ES_WORKDIR/search-guard-2/tools/* && $ES_WORKDIR/search-guard-2/tools/sgadmin.sh -cd $ES_DIR/plugins/search-guard-2/sgconfig/ -ks $ES_DIR/plugins/search-guard-2/sgconfig/keystore.jks -kspass a4Frs9dtgx92119De -ts $ES_DIR/plugins/search-guard-2/sgconfig/truststore.jks -tspass a4Frs9dtgx92119De -nhnv --diagnose -icl -hlocalhost
+   [ $? -eq 0 ] && curl -XPOST 'http://admin:V8R4i5HsN85K8EFm@localhost:9200/mmmjingsocial_default_index' -d @/docker-init.d/es.init.standard.mappings.json && \
+          curl -XPOST 'http://admin:V8R4i5HsN85K8EFm@localhost:9200/mmmjingsocial_top_keyword_messages' -d @/docker-init.d/es.init.ik_message.mappings.json
 fi
 [ $? -eq 0 ] && cd && rm -rf $ES_DIR/search-guard-ssl
 exec "$@"
