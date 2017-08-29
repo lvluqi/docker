@@ -17,16 +17,24 @@ CLASS_PATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib
 PATH=$PATH:$JAVA_HOME/bin
 export JAVA_HOME
 EOF
+  if [ ! -d "$ES_DIR/config" ];then
+     ln -s /etc/elasticsearch/ $ES_DIR/config
+  fi
+  if [ ! -d "$ES_DIR/data" ];then
+     ln -s /var/lib/elasticsearch $ES_DIR/data
+  fi
+  if [ ! -d "$ES_DIR/logs" ];then
+     ln -s /var/log/elasticsearch $ES_DIR/logs
+  fi
+  for path in \
+       /usr/share/elasticsearch/data \
+       /usr/share/elasticsearch/logs \
+       /usr/share/elasticsearch/config \
+       /var/lib/elasticsearch \
+  ; do
+      chown -R elasticsearch:elasticsearch "$path"
+  done
   if [ ! -d "/var/lib/elasticsearch/private" ];then
-     ln -s /etc/elasticsearch/ $ES_DIR/config && ln -s /var/lib/elasticsearch $ES_DIR/data && ln -s /var/log/elasticsearch $ES_DIR/logs
-    for path in \
-	/usr/share/elasticsearch/data \
-	/usr/share/elasticsearch/logs \
-        /usr/share/elasticsearch/config \
-        /var/lib/elasticsearch \
-    ; do
-        chown -R elasticsearch:elasticsearch "$path"
-    done
      cd $ES_DIR && git clone https://github.com/floragunncom/search-guard-ssl.git && cd search-guard-ssl && git checkout es-2.4.1
 
      chmod a+x $ES_DIR/search-guard-ssl/example-pki-scripts/* && sed -i 's/changeit/a4Frs9dtgx92119De/g' $ES_DIR/search-guard-ssl/example-pki-scripts/example.sh
