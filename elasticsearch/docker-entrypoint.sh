@@ -17,7 +17,7 @@ CLASS_PATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib
 PATH=$PATH:$JAVA_HOME/bin
 export JAVA_HOME
 EOF
-  if [ -d "$ES_DIR/search-guard-ssl" ];then
+  if [ ! -d "/var/lib/elasticsearch/private" ];then
      ln -s /etc/elasticsearch/ $ES_DIR/config && ln -s /var/lib/elasticsearch $ES_DIR/data && ln -s /var/log/elasticsearch $ES_DIR/logs
     for path in \
 	/usr/share/elasticsearch/data \
@@ -46,4 +46,5 @@ EOF
      [ $? -eq 0 ] && cd && rm -rf $ES_DIR/search-guard-ssl
   fi
 fi
+cd
 exec "$@"
