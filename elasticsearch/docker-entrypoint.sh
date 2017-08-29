@@ -23,6 +23,7 @@ EOF
 	/usr/share/elasticsearch/data \
 	/usr/share/elasticsearch/logs \
         /usr/share/elasticsearch/config \
+        /var/lib/elasticsearch \
     ; do
         chown -R elasticsearch:elasticsearch "$path"
     done
@@ -43,7 +44,6 @@ EOF
           curl -XPOST 'http://admin:V8R4i5HsN85K8EFm@localhost:9200/mmmjingsocial_top_keyword_messages' -d @/docker-init.d/es.init.ik_message.mappings.json
      [ $? -eq 0 ] && /etc/init.d/elasticsearch stop && echo "JAVA_OPTS=\"\$JAVA_OPTS -Des.default.path.conf=$ES_CONFIG_DIR\"" >> $ES_DIR/bin/elasticsearch.in.sh && echo "JAVA_OPTS=\"\$JAVA_OPTS -Des.insecure.allow.root=true\"" >> $ES_DIR/bin/elasticsearch.in.sh
      [ $? -eq 0 ] && cd && rm -rf $ES_DIR/search-guard-ssl
-     ln -s /etc/elasticsearch/ $ES_DIR/config && ln -s /var/lib/elasticsearch $ES_DIR/data && ln -s /var/log/elasticsearch $ES_DIR/logs
   fi
 fi
 exec "$@"
