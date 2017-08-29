@@ -38,7 +38,7 @@ EOF
   if [ $? -ne 0  ];then
   echo "JAVA_OPTS=\"\$JAVA_OPTS -Des.default.path.conf=$ES_CONFIG_DIR\"" >> $ES_DIR/bin/elasticsearch.in.sh && echo "JAVA_OPTS=\"\$JAVA_OPTS -Des.insecure.allow.root=true\"" >> $ES_DIR/bin/elasticsearch.in.sh
   fi
-  if [ ! -d "/var/lib/elasticsearch/private" ];then
+  if [ -d "$ES_DIR/search-guard-ssl" ]
      cd $ES_DIR && git clone https://github.com/floragunncom/search-guard-ssl.git && cd search-guard-ssl && git checkout es-2.4.1
 
      chmod a+x $ES_DIR/search-guard-ssl/example-pki-scripts/* && sed -i 's/changeit/a4Frs9dtgx92119De/g' $ES_DIR/search-guard-ssl/example-pki-scripts/example.sh
@@ -47,9 +47,14 @@ EOF
 
      cp $ES_DIR/search-guard-ssl/example-pki-scripts/node-0-keystore.jks $ES_CONFIG_DIR && cp $ES_DIR/search-guard-ssl/example-pki-scripts/truststore.jks $ES_CONFIG_DIR
 
-     cp $ES_DIR/search-guard-ssl/example-pki-scripts/node-0-keystore.jks $ES_WORKDIR/search-guard-2/sgconfig && cp $ES_DIR/search-guard-ssl/example-pki-scripts/truststore.jks $ES_WORKDIR/search-guard-2/sgconfig
+     cp $ES_DIR/search-guard-ssl/example-pki-scripts/node-0-keystore.jks $ES_WORKDIR/search-guard-2/sgconfig && cp $ES_DIR/search-guard-ssl/example-pki-scripts/truststore.j
+ks $ES_WORKDIR/search-guard-2/sgconfig
 
      mv $ES_WORKDIR/search-guard-2/sgconfig/node-0-keystore.jks $ES_WORKDIR/search-guard-2/sgconfig/keystore.jks
+     
+     rm -rf $ES_DIR/search-guard-ssl
+  fi
+  if [ ! -d "/var/lib/elasticsearch/private" ];then
      /etc/init.d/elasticsearch start && \
      chmod +x $ES_WORKDIR/search-guard-2/tools/* && $ES_WORKDIR/search-guard-2/tools/sgadmin.sh -cd $ES_DIR/plugins/search-guard-2/sgconfig/ -ks $ES_DIR/plugins/search-guard-2/sgconfig/keystore.jks -kspass a4Frs9dtgx92119De -ts $ES_DIR/plugins/search-guard-2/sgconfig/truststore.jks -tspass a4Frs9dtgx92119De -nhnv --diagnose -icl -hlocalhost
      [ $? -eq 0 ] && curl -XPOST 'http://admin:V8R4i5HsN85K8EFm@localhost:9200/mmmjingsocial_default_index' -d @/docker-init.d/es.init.standard.mappings.json && \
