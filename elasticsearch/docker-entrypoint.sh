@@ -38,7 +38,7 @@ EOF
   if [ $? -ne 0  ];then
   echo "JAVA_OPTS=\"\$JAVA_OPTS -Des.default.path.conf=$ES_CONFIG_DIR\"" >> $ES_DIR/bin/elasticsearch.in.sh && echo "JAVA_OPTS=\"\$JAVA_OPTS -Des.insecure.allow.root=true\"" >> $ES_DIR/bin/elasticsearch.in.sh
   fi
-  if [ -d "$ES_DIR/search-guard-ssl" ]
+  if [ -d "$ES_DIR/search-guard-ssl" ];then
      cd $ES_DIR && git clone https://github.com/floragunncom/search-guard-ssl.git && cd search-guard-ssl && git checkout es-2.4.1
 
      chmod a+x $ES_DIR/search-guard-ssl/example-pki-scripts/* && sed -i 's/changeit/a4Frs9dtgx92119De/g' $ES_DIR/search-guard-ssl/example-pki-scripts/example.sh
