@@ -17,6 +17,7 @@ CLASS_PATH=$JAVA_HOME/lib:$JAVA_HOME/jre/lib
 PATH=$PATH:$JAVA_HOME/bin
 export JAVA_HOME
 EOF
+source /etc/profile
   if [ ! -d "$ES_DIR/config" ];then
      ln -s /etc/elasticsearch/ $ES_DIR/config
   fi
@@ -51,7 +52,7 @@ EOF
 
      mv $ES_WORKDIR/search-guard-2/sgconfig/node-0-keystore.jks $ES_WORKDIR/search-guard-2/sgconfig/keystore.jks
      
-     rm -rf $ES_DIR/search-guard-ssl
+     cd && rm -rf $ES_DIR/search-guard-ssl
   fi
   if [ ! -d "/var/lib/elasticsearch/private" ];then
      /etc/init.d/elasticsearch start && \
